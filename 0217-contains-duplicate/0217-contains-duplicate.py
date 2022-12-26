@@ -1,11 +1,8 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        check_dup = {}
+        d = {}
         for i in nums:
-            if i in check_dup:
+            if i in d:
                 return True
-            check_dup[i] = True
+            d[i] = True
         return False
-
-
-        
