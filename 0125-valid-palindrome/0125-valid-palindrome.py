@@ -1,13 +1,21 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        char = "abcdefghijklmnopqrstuvwxyz0123456789"
-        pal = ""
-        for i in s.lower():
-            if i in char:
-                pal += i
+        l, r = 0, len(s) - 1
+        while l < r:
+            while l < r and not self.alphanum(s[l]):
+                l += 1
+            while l < r and not self.alphanum(s[r]):
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+        return True
 
-        rev_pal = pal[::-1]
-
-        return pal == rev_pal
-
-    
+    # Could write own alpha-numeric function
+    def alphanum(self, c):
+        return (
+            ord("A") <= ord(c) <= ord("Z")
+            or ord("a") <= ord(c) <= ord("z")
+            or ord("0") <= ord(c) <= ord("9")
+        )
